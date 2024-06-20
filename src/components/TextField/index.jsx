@@ -31,7 +31,6 @@ const TextFieldStyled = styled.div`
     background: transparent;
     color: #D9D9D9;
     width: 100%;
-    font-family: monospace;
     border: none;
     outline: none;
     z-index: 1;
