@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { Normalize } from 'styled-normalize';
 import Header from "./components/Header";
+import { GlobalStyle } from "./GlobalStyle";
 
 const BackgroundGradient = styled.div`
   background: linear-gradient(
@@ -16,7 +16,7 @@ const BackgroundGradient = styled.div`
 function App() {
   return (
     <BackgroundGradient>
-      <Normalize/>
+      <GlobalStyle/>
 
       <Header/>
     </BackgroundGradient>
