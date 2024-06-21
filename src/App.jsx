@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 import { GlobalStyle } from "./GlobalStyle";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Banner from "./components/Banner";
+import Gallery from "./components/Gallery";
+import photos from './data/photos.json';
 
 const BackgroundGradient = styled.div`
   background: linear-gradient(
@@ -37,6 +40,8 @@ const MainContent = styled.main`
 `;
 
 function App() {
+  const [galleryPhotos, setGalleryPhotos] = useState(photos);;
+  
   return (
     <BackgroundGradient>
       <GlobalStyle/>
@@ -46,8 +51,10 @@ function App() {
 
         <MainContainer>
           <Sidebar/>
+          
           <MainContent>
             <Banner/>
+            <Gallery photos={galleryPhotos}/>
           </MainContent>
         </MainContainer>
       </AppContainer>
