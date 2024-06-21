@@ -7,7 +7,7 @@ const PhotoStyled = styled.figure`
   flex-direction: column;
   border-radius: 20px;
   
-  img {
+  & > img {
     border-radius: 20px 20px 0 0;
   }
 `;
@@ -21,9 +21,8 @@ const PhotoContent = styled.figcaption`
 
 const PhotoFooter = styled.footer`
   margin-top: 4px;
-  display: grid;
-  gap: 24px;
-  grid-template-columns: auto 24px 24px;
+  display: flex;
+  justify-content: space-between;
 
   span {
     color: #D9D9D9;
@@ -31,20 +30,32 @@ const PhotoFooter = styled.footer`
 
   img {
     height: 24px;
+    margin-left: 24px;
+  
+    &:nth-child(2) {
+      display: ${props => props.$isExpanded ? 'none' : 'inline-block'};
+    }
   }
 `;
 
-const Photo = ({ photo }) => {
+const Photo = ({ photo, isExpanded = false, onExpand }) => {
   return(
     <PhotoStyled>
       <img src={photo.path} alt={photo.title}/>
       <PhotoContent>
         <strong>{photo.title}</strong>
 
-        <PhotoFooter>
+        <PhotoFooter $isExpanded={isExpanded}>
           <span>{photo.source}</span>
-          <img src="/icons/favorite-inactive.png" alt="Favoritar"/>
-          <img src="/icons/expand.png" alt="Expandir"/>
+          
+          <div>
+            <img src="/icons/favorite-inactive.png" alt="Favoritar"/>
+            <img
+              src="/icons/expand.png"
+              alt="Expandir"
+              onClick={() => onExpand(photo)}
+            />
+          </div>
         </PhotoFooter>
       </PhotoContent>
   </PhotoStyled>

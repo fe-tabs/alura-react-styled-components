@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import Banner from "./components/Banner";
 import Gallery from "./components/Gallery";
 import photos from './data/photos.json';
+import ModalZoom from "./components/ModalZoom";
 
 const BackgroundGradient = styled.div`
   background: linear-gradient(
@@ -41,7 +42,8 @@ const MainContent = styled.main`
 
 function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);;
-  
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
   return (
     <BackgroundGradient>
       <GlobalStyle/>
@@ -54,10 +56,18 @@ function App() {
           
           <MainContent>
             <Banner/>
-            <Gallery photos={galleryPhotos}/>
+            <Gallery 
+              photos={galleryPhotos}
+              onSelectedPhoto={photo => setSelectedPhoto(photo)}
+            />
           </MainContent>
         </MainContainer>
       </AppContainer>
+
+      <ModalZoom 
+        photo={selectedPhoto} 
+        onSelectedPhoto={photo => setSelectedPhoto(photo)}
+      />
     </BackgroundGradient>
   )
 }
