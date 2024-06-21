@@ -44,16 +44,20 @@ function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);;
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [tag, setTag] = useState(0);
+  const [search, setSearch] = useState('');
 
   useEffect(() =>{
     const filteredPhotos = photos.filter(photo => {
       const tagFilter = !tag || photo.tagId == tag;
+      const searchFilter = !search || photo.title.toLowerCase().includes(
+        search.toLowerCase()
+      );
       
-      return tagFilter;
+      return tagFilter && searchFilter;
     });
 
     setGalleryPhotos(filteredPhotos);
-  }, [tag]);
+  }, [tag, search]);
 
   const onFavorite = (id) => {
     setGalleryPhotos(galleryPhotos.map(galleryPhoto => {
@@ -78,7 +82,10 @@ function App() {
       <GlobalStyle/>
 
       <AppContainer>
-        <Header/>
+        <Header
+          search={search}
+          setSearch={setSearch}
+        />
 
         <MainContainer>
           <Sidebar/>

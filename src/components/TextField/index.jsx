@@ -43,6 +43,8 @@ const TextFieldStyled = styled.div`
 `;
 
 const TextField = ({ 
+  value,
+  setValue,
   placeholder, 
   children 
 }) => {
@@ -52,6 +54,8 @@ const TextField = ({
       
       <input
         type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
       />
 
