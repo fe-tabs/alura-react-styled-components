@@ -38,7 +38,12 @@ const PhotoFooter = styled.footer`
   }
 `;
 
-const Photo = ({ photo, isExpanded = false, onExpand }) => {
+const Photo = ({ 
+  photo, 
+  isExpanded = false, 
+  onExpand,
+  onFavorite 
+}) => {
   return(
     <PhotoStyled>
       <img src={photo.path} alt={photo.title}/>
@@ -49,7 +54,17 @@ const Photo = ({ photo, isExpanded = false, onExpand }) => {
           <span>{photo.source}</span>
           
           <div>
-            <img src="/icons/favorite-inactive.png" alt="Favoritar"/>
+            <img 
+              src={photo.isFavorite ? 
+                "/icons/favorite-active.png" :
+                "/icons/favorite-inactive.png"
+              }
+              alt={photo.isFavorite ? 
+                "Remover dos Favoritos" :
+                "Favoritar"
+              }
+              onClick={() => onFavorite(photo.id)}
+            />
             <img
               src="/icons/expand.png"
               alt="Expandir"

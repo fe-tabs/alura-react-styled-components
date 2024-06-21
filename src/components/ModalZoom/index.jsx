@@ -38,7 +38,7 @@ const DialogStyled = styled.dialog`
   }
 `;
 
-const ModalZoom = ({ photo, onSelectedPhoto }) => {
+const ModalZoom = ({ photo, onFavorite, onSelectedPhoto }) => {
   return (
     <>
       {photo && 
@@ -46,7 +46,7 @@ const ModalZoom = ({ photo, onSelectedPhoto }) => {
           <Overlay></Overlay>
           <DialogStyled open={!!photo}>
             <form method="dialog" onSubmit={() => onSelectedPhoto(null)}>
-              <Photo photo={photo} isExpanded={true}/>
+              <Photo photo={photo} isExpanded={true} onFavorite={onFavorite}/>
               <button type="submit">
                 <img
                   src="/icons/close.png"

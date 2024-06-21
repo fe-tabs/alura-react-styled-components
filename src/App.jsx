@@ -44,6 +44,22 @@ function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);;
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  const onFavorite = (id) => {
+    setGalleryPhotos(galleryPhotos.map(galleryPhoto => {
+      if(selectedPhoto && galleryPhoto.id == selectedPhoto.id) {
+        setSelectedPhoto({
+          ...selectedPhoto,
+          isFavorite: !selectedPhoto.isFavorite 
+        })
+      }
+
+      return {
+        ...galleryPhoto,
+        isFavorite: galleryPhoto.id === id ? !galleryPhoto.isFavorite : galleryPhoto.isFavorite
+      }
+    }));
+  }
+
   return (
     <BackgroundGradient>
       <GlobalStyle/>
@@ -58,6 +74,7 @@ function App() {
             <Banner/>
             <Gallery 
               photos={galleryPhotos}
+              onFavorite={onFavorite}
               onSelectedPhoto={photo => setSelectedPhoto(photo)}
             />
           </MainContent>
@@ -66,6 +83,7 @@ function App() {
 
       <ModalZoom 
         photo={selectedPhoto} 
+        onFavorite={onFavorite}
         onSelectedPhoto={photo => setSelectedPhoto(photo)}
       />
     </BackgroundGradient>

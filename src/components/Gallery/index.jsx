@@ -21,7 +21,11 @@ const PhotosContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Gallery = ({ photos = [], onSelectedPhoto }) => {  
+const Gallery = ({ 
+  photos = [], 
+  onFavorite,
+  onSelectedPhoto 
+}) => {  
   return(
     <>
       <Tags/>
@@ -31,7 +35,12 @@ const Gallery = ({ photos = [], onSelectedPhoto }) => {
           <Title>Navegue pela galeria</Title>
           <PhotosContainer>
             {photos.map(photo => (
-              <Photo photo={photo} key={photo.id} onExpand={onSelectedPhoto}/>
+              <Photo
+                photo={photo}
+                key={photo.id}
+                onExpand={onSelectedPhoto}
+                onFavorite={onFavorite}
+              />
             ))}
           </PhotosContainer>
         </GalleryContainer>
