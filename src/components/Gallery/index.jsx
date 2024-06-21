@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Title from "../Title";
 import Tags from "./Tags";
 import Photo from "./Photo";
+import Popular from "./Popular";
 
 const GalleryStyled = styled.div`
   display: flex;
@@ -34,6 +35,8 @@ const Gallery = ({ photos = [], onSelectedPhoto }) => {
             ))}
           </PhotosContainer>
         </GalleryContainer>
+
+        <Popular/>
       </GalleryStyled>
     </>
   );
