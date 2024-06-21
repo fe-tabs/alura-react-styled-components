@@ -26,12 +26,12 @@ const TagsStyled = styled.div`
   }
 `;
 
-const Tags = ({ onFilter }) => {
+const Tags = ({ setTag }) => {
   return(
     <TagsStyled>
       <h3>Busque por tags:</h3>
       {tags.map(tag => (
-        <button key={tag.id} onClick={() => onFilter(tag.id)}>{tag.title}</button>
+        <button key={tag.id} onClick={() => setTag(tag.id)}>{tag.title}</button>
       ))}
     </TagsStyled>
   );

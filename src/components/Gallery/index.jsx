@@ -23,13 +23,13 @@ const PhotosContainer = styled.div`
 
 const Gallery = ({ 
   photos = [], 
-  onFilter,
+  setTag,
   onFavorite,
   onSelectedPhoto 
 }) => {  
   return(
     <>
-      <Tags onFilter={onFilter}/>
+      <Tags setTag={setTag}/>
 
       <GalleryStyled>
         <GalleryContainer>

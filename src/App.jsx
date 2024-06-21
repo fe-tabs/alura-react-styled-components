@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { GlobalStyle } from "./GlobalStyle";
 import Header from "./components/Header";
@@ -43,6 +43,17 @@ const MainContent = styled.main`
 function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);;
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [tag, setTag] = useState(0);
+
+  useEffect(() =>{
+    const filteredPhotos = photos.filter(photo => {
+      const tagFilter = !tag || photo.tagId == tag;
+      
+      return tagFilter;
+    });
+
+    setGalleryPhotos(filteredPhotos);
+  }, [tag]);
 
   const onFavorite = (id) => {
     setGalleryPhotos(galleryPhotos.map(galleryPhoto => {
@@ -55,19 +66,11 @@ function App() {
 
       return {
         ...galleryPhoto,
-        isFavorite: galleryPhoto.id === id ? !galleryPhoto.isFavorite : galleryPhoto.isFavorite
+        isFavorite: galleryPhoto.id === id ? 
+        !galleryPhoto.isFavorite : 
+        galleryPhoto.isFavorite
       }
     }));
-  }
-
-  const onFilter = (id) => {
-    if(id == 0) {
-      setGalleryPhotos(photos);
-    } else {
-      setGalleryPhotos(photos.filter(photo => {
-        return photo.tagId == id;
-      }))
-    }
   }
 
   return (
@@ -85,7 +88,7 @@ function App() {
             <Gallery 
               photos={galleryPhotos}
               onFavorite={onFavorite}
-              onFilter={onFilter}
+              setTag={setTag}
               onSelectedPhoto={photo => setSelectedPhoto(photo)}
             />
           </MainContent>
