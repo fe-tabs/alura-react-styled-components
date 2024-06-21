@@ -15,14 +15,42 @@ const BackgroundGradient = styled.div`
   width: 100%;
 `;
 
+const AppContainer = styled.div`
+  width: 1440px;
+  max-width:100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+`;
+
+const MainContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 24px;
+`;
+
+const MainContent = styled.main`
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+`;
+
 function App() {
   return (
     <BackgroundGradient>
       <GlobalStyle/>
 
-      <Header/>
-      <Sidebar/>
-      <Banner/>
+      <AppContainer>
+        <Header/>
+
+        <MainContainer>
+          <Sidebar/>
+          <MainContent>
+            <Banner/>
+          </MainContent>
+        </MainContainer>
+      </AppContainer>
     </BackgroundGradient>
   )
 }
