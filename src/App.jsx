@@ -60,6 +60,16 @@ function App() {
     }));
   }
 
+  const onFilter = (id) => {
+    if(id == 0) {
+      setGalleryPhotos(photos);
+    } else {
+      setGalleryPhotos(photos.filter(photo => {
+        return photo.tagId == id;
+      }))
+    }
+  }
+
   return (
     <BackgroundGradient>
       <GlobalStyle/>
@@ -75,6 +85,7 @@ function App() {
             <Gallery 
               photos={galleryPhotos}
               onFavorite={onFavorite}
+              onFilter={onFilter}
               onSelectedPhoto={photo => setSelectedPhoto(photo)}
             />
           </MainContent>
