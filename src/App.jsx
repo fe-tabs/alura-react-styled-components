@@ -7,6 +7,7 @@ import Banner from "./components/Banner";
 import Gallery from "./components/Gallery";
 import photos from './data/photos.json';
 import ModalZoom from "./components/ModalZoom";
+import Footer from "./components/Footer";
 
 const BackgroundGradient = styled.div`
   background: linear-gradient(
@@ -100,7 +101,9 @@ function App() {
             />
           </MainContent>
         </MainContainer>
+
       </AppContainer>
+      <Footer/>
 
       <ModalZoom 
         photo={selectedPhoto} 
